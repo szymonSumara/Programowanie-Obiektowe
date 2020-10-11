@@ -1,5 +1,8 @@
 package agh.cs.lab1;
 
+import java.util.Arrays;
+
+
 public class World {
     public static void main(String[] args) {
         System.out.print("Start\n");
@@ -9,10 +12,30 @@ public class World {
     }
 
     public static Direction[] convertStringsToEnum(String[] args) {
-        int arrayLenght = args.length;
-        Direction[] resoult = new Direction[arrayLenght];
+        //int arrayLenght = args.length;
+        Direction[] resoult = Arrays.stream(args).map( temp -> {
+            Direction toReturn = null ;
+            switch (temp) {
+                case "f":
+                    toReturn =  Direction.FORWARD;
+                    break;
+                case "b":
+                    toReturn = Direction.BACKWARD;
+                    break;
+                case "l":
+                    toReturn = Direction.LEFT;
+                    break;
+                case "r":
+                    toReturn = Direction.RIGHT;
+                    break;
+                default:
+                    System.out.println("ERR: Input error");
+                    System.exit(0);
+            }
+            return toReturn;
+        }).toArray(Direction[]::new);
 
-        int i = 0;
+      /*  int i = 0;
         for (String argument : args) {
             switch (argument) {
                 case "f":
@@ -32,7 +55,7 @@ public class World {
                     System.exit(0);
             }
             i++;
-        }
+        }*/
         return resoult;
     }
 
