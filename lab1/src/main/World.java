@@ -2,16 +2,25 @@ package agh.cs.lab1;
 
 import java.util.Arrays;
 
-
 public class World {
     public static void main(String[] args) {
-        System.out.print("Start\n");
-        Direction[] modifyData = convertStringsToEnum(args);
-        run(modifyData);
-        System.out.print("Stop");
+       /* Vector2d position1 = new Vector2d(1,2);
+        System.out.println(position1);
+        Vector2d position2 = new Vector2d(-2,1);
+        System.out.println(position2);
+        System.out.println(position1.add(position2));
+*/
+
+        MapDirection direction = MapDirection.NORTH;
+        System.out.println(direction.next().toUnitVector());
+        System.out.println(direction.next().next().toUnitVector());
+        System.out.println(direction.next().next().next().toUnitVector());
+        System.out.println(direction.next().next().next().next().toUnitVector());
+
+
     }
 
-    public static Direction[] convertStringsToEnum(String[] args) {
+   /* public static Direction[] convertStringsToEnum(String[] args) {
         //int arrayLenght = args.length;
         Direction[] resoult = Arrays.stream(args).map( temp -> {
             Direction toReturn = null ;
@@ -35,7 +44,7 @@ public class World {
             return toReturn;
         }).toArray(Direction[]::new);
 
-      /*  int i = 0;
+      *//*  int i = 0;
         for (String argument : args) {
             switch (argument) {
                 case "f":
@@ -55,11 +64,11 @@ public class World {
                     System.exit(0);
             }
             i++;
-        }*/
+        }*//*
         return resoult;
-    }
+    }*/
 
-    public static void run(Direction[] args){
+    /*public static void run(Direction[] args){
         // System.out.print("Animal is going foreward\n");
         //boolean isFirst = true;
         //for(String argument : args) {
@@ -85,5 +94,5 @@ public class World {
                     break;
             }
         }
-    }
+    }*/
 }
