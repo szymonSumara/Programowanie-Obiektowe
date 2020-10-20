@@ -1,7 +1,4 @@
 /shelf/
 lab1.iml
-lab1/out/production/lab1/agh/cs/lab1/MapDirection$1.class
-lab1/out/production/lab1/agh/cs/lab1/MapDirection.class
-lab1/out/production/lab1/agh/cs/lab1/World.class
- lab1/out/production/lab1/test/MapDirectionTest.class
+*.class
 *.xml
