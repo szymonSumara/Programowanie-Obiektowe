@@ -2,3 +2,5 @@
 lab1.iml
 *.class
 *.xml
+.name
+.gitignore
