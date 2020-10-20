@@ -2,9 +2,9 @@ package agh.cs.lab1;
 
 public enum  MapDirection {
     NORTH,
-    WEST,
+    EAST,
     SOUTH,
-    EAST;
+    WEST;
 
 
 
