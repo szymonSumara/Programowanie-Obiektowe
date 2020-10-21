@@ -1,4 +1,4 @@
-package test;
+package test;   // test to nie pakiet, tylko folder; struktura pakietowa powinna być taka sama jak w main
 
 import agh.cs.lab1.MapDirection;
 import org.junit.jupiter.api.Test;

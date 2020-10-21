@@ -1,4 +1,4 @@
-package agh.cs.lab1;
+package agh.cs.lab1;    // pakiet się nie zgadza ze strukturą katalogów
 
 import java.util.Vector;
 
@@ -27,7 +27,7 @@ public class Vector2d {
         return false;
     }
 
-    public Vector2d upperRight( Vector2d other){
+    public Vector2d upperRight( Vector2d other){    // Math.max
 
         int tmpX = 0;
         int tmpY = 0;

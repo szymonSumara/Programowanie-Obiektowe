@@ -45,7 +45,7 @@ public class Vector2dTest {
         Vector2d vec4 = new Vector2d(-20,8);
         Vector2d vec5 = new Vector2d(7,8);
 
-        assertEquals(true,vec1.precedes(vec2));
+        assertEquals(true,vec1.precedes(vec2)); // assertTrue
         assertEquals(true,vec2.precedes(vec2));
         assertEquals(true,vec4.precedes(vec2));
 
