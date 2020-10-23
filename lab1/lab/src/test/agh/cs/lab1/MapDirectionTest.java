@@ -1,6 +1,4 @@
-package test;
-
-import agh.cs.lab1.MapDirection;
+package agh.cs.lab1;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

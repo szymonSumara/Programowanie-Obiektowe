@@ -1,5 +1,4 @@
-package test;
-import agh.cs.lab1.Vector2d;
+package agh.cs.lab1;
 import org.junit.jupiter.api.Test;
 
 
@@ -48,7 +47,6 @@ public class Vector2dTest {
         assertEquals(true,vec1.precedes(vec2));
         assertEquals(true,vec2.precedes(vec2));
         assertEquals(true,vec4.precedes(vec2));
-
         assertEquals(false,vec4.precedes(vec1));
 
     }
