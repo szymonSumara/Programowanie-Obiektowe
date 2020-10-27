@@ -9,7 +9,6 @@ public enum  MapDirection {
     private Vector2d unitVector;
     private String   stringRepresentation;
 
-    private static MapDirection[] vals = values();
 
     private MapDirection(String stringRepresentation , Vector2d unitVector){
         this.unitVector = unitVector;
@@ -21,11 +20,11 @@ public enum  MapDirection {
     }
 
     public MapDirection next() {
-        return vals[(this.ordinal() + 1) % vals.length];
+        return values()[(this.ordinal() + 1) % values().length];
     }
 
     public MapDirection previous() {
-        return vals[(this.ordinal() - 1 + vals.length) % vals.length];
+        return values()[(this.ordinal() - 1 + values().length) % values().length];
     }
 
     public  Vector2d toUnitVector(){
