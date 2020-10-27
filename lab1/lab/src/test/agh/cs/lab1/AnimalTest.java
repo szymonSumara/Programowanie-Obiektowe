@@ -37,7 +37,6 @@ public class AnimalTest {
     @Test
     public void borderTest(){
         Animal animal = new Animal();
-
         for(int i=0;i<5;i++)
             animal.move(MoveDirections.FORWARD);
         assertEquals("Animal position : (2,4) orientation: Północ",animal.toString());
