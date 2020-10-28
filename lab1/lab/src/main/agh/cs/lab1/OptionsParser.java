@@ -22,7 +22,7 @@ public  class OptionsParser {
             }
            return null;
         }).toArray(MoveDirections[]::new);
-        return resoult;
+        return resoult; // resoult?
 
     }
 
