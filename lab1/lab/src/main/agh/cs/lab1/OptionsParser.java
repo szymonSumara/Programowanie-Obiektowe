@@ -2,26 +2,26 @@ package agh.cs.lab1;
 import java.util.Arrays;
 
 public  class OptionsParser {
-    static public MoveDirections [] parse(String args[]){
-        MoveDirections[] resoult = Arrays.stream(args).
+    static public MoveDirection [] parse(String args[]){
+        MoveDirection[] resoult = Arrays.stream(args).
                 filter(temp -> temp.equals( "f") || temp.equals( "b") || temp.equals( "r") || temp.equals( "l") ||
                         temp.equals( "forward") || temp.equals( "backward") || temp.equals( "left") || temp.equals( "right")  ).map( temp -> {
             switch (temp) {
                 case "f":
                 case "forward":
-                    return  MoveDirections.FORWARD;
+                    return  MoveDirection.FORWARD;
                 case "b":
                 case "backward":
-                    return MoveDirections.BACKWARD;
+                    return MoveDirection.BACKWARD;
                 case "l":
                 case "left":
-                    return MoveDirections.LEFT;
+                    return MoveDirection.LEFT;
                 case "r":
                 case "right":
-                    return MoveDirections.RIGHT;
+                    return MoveDirection.RIGHT;
             }
            return null;
-        }).toArray(MoveDirections[]::new);
+        }).toArray(MoveDirection[]::new);
         return resoult;
 
     }

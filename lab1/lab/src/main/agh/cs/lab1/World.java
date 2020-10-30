@@ -18,9 +18,9 @@ public class World {
 
         Animal animal = new Animal();
 
-        MoveDirections [] movment = OptionsParser.parse(args);
+        MoveDirection [] movment = OptionsParser.parse(args);
 
-        for (MoveDirections move:movment){
+        for (MoveDirection move:movment){
             animal.move(move);
             System.out.println(animal);
         }
