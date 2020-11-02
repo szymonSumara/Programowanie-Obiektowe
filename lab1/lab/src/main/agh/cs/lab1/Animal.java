@@ -35,7 +35,7 @@ public class Animal {
 
 
     public String toString(){
-        return "Animal position : " + position + " orientation: " + this.orientatnion;
+        return "" + this.orientatnion;
     }
 
     public void move(MoveDirection direction){
@@ -45,8 +45,10 @@ public class Animal {
             case LEFT:orientatnion = orientatnion.previous();break;
             case FORWARD:
                 tmpPosition = position.add(orientatnion.toUnitVector());
-                if( map.canMoveTo(tmpPosition))
+                if( map.canMoveTo(tmpPosition)){
                     position = tmpPosition;
+                }
+
                 break;
             case BACKWARD:
                 tmpPosition = position.subtract(orientatnion.toUnitVector());

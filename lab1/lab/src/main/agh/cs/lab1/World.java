@@ -1,29 +1,16 @@
 package agh.cs.lab1;
-/*
-    Odpowiadając na pytanie problemowe można by utworzyć klasę Board
-    z takimi metodami jak
 
-    itsPosibleToMoveThere(vector2d vec)
-        zwracającą wartość bool i mówiącą nam czy nie wychodzimy  poza mapę
-        i czy nie staniemy na innym zwierzaku
-
-    GiveFirstFreeField
-        zwracającą pierwsze wolne pole
-        Używalibyśmy tej metody w konstruktorze Animal do wyznaczania wartości początkowych position
-
-
- */
 public class World {
     public static void main(String[] args) {
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        for(MoveDirection d:directions){
+            System.out.println("a");
 
-        Animal animal = new Animal();
-
-        MoveDirection [] movment = OptionsParser.parse(args);
-
-        for (MoveDirection move:movment){
-            animal.move(move);
-            System.out.println(animal);
         }
+        IWorldMap map = new RectangularMap(10, 5);
+        map.place(new Animal(map));
+        map.place(new Animal(map,new Vector2d(3,4)));
+        map.run(directions);
 
 
     }

@@ -24,8 +24,8 @@ public class RectangularMap implements IWorldMap{
 
     public boolean canMoveTo(Vector2d position){
         return  position.precedes(this.northEastCorner)
-                && map[position.x][position.y] == 0
-                && position.follows(this.southWestCorner);
+                && position.follows(this.southWestCorner)
+                && map[position.x][position.y] == 0;
     }
 
     public boolean place(Animal animal){
@@ -37,10 +37,22 @@ public class RectangularMap implements IWorldMap{
         map[tmpPositjon.x][tmpPositjon.y] = lastFreeIndex;
         lastFreeIndex+=1;
         return true;
+
     }
 
 
     public void run(MoveDirection[] directions){
+        int numberOfAnimals = animals.size();
+        if(numberOfAnimals < 1)
+            return;
+        int actualAnimal = 0;
+        for(MoveDirection direction : directions){
+            animals.get(actualAnimal).move(direction);
+            actualAnimal=(actualAnimal+1)%numberOfAnimals;
+            MapVisualizer mv = new MapVisualizer(this);
+            System.out.println(mv.draw(new Vector2d(0,0),new Vector2d(width,lenght)));
+
+        }
     }
 
 
