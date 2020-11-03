@@ -1,10 +1,10 @@
 package agh.cs.lab1;
 
 public enum  MapDirection {
-    NORTH("N",new Vector2d(0,1)),
-    EAST("E",new Vector2d(1,0)),
-    SOUTH("S",new Vector2d(0,-1)),
-    WEST("W",new Vector2d(-1,0));
+    NORTH("^",new Vector2d(0,1)),
+    EAST(">",new Vector2d(1,0)),
+    SOUTH("v",new Vector2d(0,-1)),
+    WEST("<",new Vector2d(-1,0));
 
     private Vector2d unitVector;
     private String   stringRepresentation;

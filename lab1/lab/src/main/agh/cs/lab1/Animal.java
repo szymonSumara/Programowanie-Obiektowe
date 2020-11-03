@@ -7,20 +7,13 @@ public class Animal {
     private IWorldMap map;
 
     public Animal(IWorldMap map){
-        if (!map.isOccupied(new Vector2d(2,2))){
             this.position = new Vector2d(2,2);
-            map.place(this);
             this.map = map;
-        }
-
     }
 
     public Animal(IWorldMap map, Vector2d initialPosition){
-        if (!map.isOccupied(initialPosition)){
             this.position = initialPosition;
-            map.place(this);
             this.map = map;
-        }
     }
 
     public Animal(){
@@ -35,7 +28,7 @@ public class Animal {
 
 
     public String toString(){
-        return "" + this.orientatnion;
+        return this.orientatnion.toString();
     }
 
     public void move(MoveDirection direction){
@@ -48,7 +41,6 @@ public class Animal {
                 if( map.canMoveTo(tmpPosition)){
                     position = tmpPosition;
                 }
-
                 break;
             case BACKWARD:
                 tmpPosition = position.subtract(orientatnion.toUnitVector());

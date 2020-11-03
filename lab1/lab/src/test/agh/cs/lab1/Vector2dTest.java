@@ -2,9 +2,8 @@ package agh.cs.lab1;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Vector2dTest {
 
@@ -16,9 +15,9 @@ public class Vector2dTest {
         Vector2d vec3 = new Vector2d(4, 3);
         Object vec4 = new Object();
 
-        assertEquals(true, vec1.equals(vec2));
-        assertEquals(false, vec2.equals(vec3));
-        assertEquals(false, vec3.equals(vec4));
+        assertTrue( vec1.equals(vec2));
+        assertFalse(vec2.equals(vec3));
+        assertFalse( vec3.equals(vec4));
 
     }
 
@@ -62,9 +61,9 @@ public class Vector2dTest {
         Vector2d vec3 = new Vector2d(0, 0);
         Vector2d vec4 = new Vector2d(132, -123);
 
-        assertEquals(false, vec1.follows(vec2), "(-1,3) is  following (3,4)");
-        assertEquals(true, vec2.follows(vec3), "(3,4) is not following (0,0)");
-        assertEquals(false, vec3.follows(vec4), "(0,0) is not following (132,-132)");
+        assertFalse( vec1.follows(vec2), "(-1,3) is  following (3,4)");
+        assertTrue(  vec2.follows(vec3), "(3,4) is not following (0,0)");
+        assertFalse( vec3.follows(vec4), "(0,0) is not following (132,-132)");
 
     }
 
