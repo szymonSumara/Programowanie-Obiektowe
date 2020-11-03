@@ -2,12 +2,11 @@ package agh.cs.lab1;
 
 
 public class Animal {
-    private Vector2d position;// = new Vector2d(2,2);
+    private Vector2d position= new Vector2d(2,2);
     private MapDirection orientatnion = MapDirection.NORTH;
     private IWorldMap map;
 
     public Animal(IWorldMap map){
-            this.position = new Vector2d(2,2);
             this.map = map;
     }
 
@@ -18,7 +17,6 @@ public class Animal {
 
     public Animal(){
         this.map = new RectangularMap(4,4);
-        position = new Vector2d(2,2);
         this.map.place(this);
     }
 
