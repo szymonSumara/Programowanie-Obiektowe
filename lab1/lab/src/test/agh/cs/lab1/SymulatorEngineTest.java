@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SymulatorEngineTest{
     @Test
     public void runTest(){
+
+
         MoveDirection[] directions = new OptionsParser().parse(new String [] {"f", "b", "r", "l", "f", "f", "r", "r","f","f","f","f","f","f","f","f"});
 
         IWorldMap map = new RectangularMap(10, 5);

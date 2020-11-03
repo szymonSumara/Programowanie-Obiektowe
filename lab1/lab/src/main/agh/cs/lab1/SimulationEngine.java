@@ -2,6 +2,8 @@ package agh.cs.lab1;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
+
 
 public class SimulationEngine implements IEngine{
 
@@ -21,7 +23,9 @@ public class SimulationEngine implements IEngine{
     }
 
     public void run(){
+        Window win = new Window(new JLabel(map.toString()));
         int actualAnimalIndex = 0;
+
         for(MoveDirection direction:this.directions){
             Object object = map.objectAt(animalsPositions.get(actualAnimalIndex));
             if(object instanceof Animal) {
@@ -30,6 +34,7 @@ public class SimulationEngine implements IEngine{
                 animalsPositions.set(actualAnimalIndex, animal.getPosition());
                 actualAnimalIndex =(actualAnimalIndex +1)%animalsPositions.size();
                 System.out.println(map);
+                win.updateContent(map.toString());
             }
         }
     }
