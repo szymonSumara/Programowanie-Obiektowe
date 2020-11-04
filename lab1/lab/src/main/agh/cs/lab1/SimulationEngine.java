@@ -9,7 +9,7 @@ public class SimulationEngine implements IEngine{
 
     private MoveDirection []  directions;
     private IWorldMap map;
-    private List<Vector2d> animalsPositions = new ArrayList<>();
+    private List<Vector2d> animalsPositions = new ArrayList<>();    // łatwiej by było, jakby Pan trzymał listę zwierząt
 
     public SimulationEngine(MoveDirection []  directions, IWorldMap map, Vector2d [] positions){
 
