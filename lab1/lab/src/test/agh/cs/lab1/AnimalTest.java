@@ -1,13 +1,16 @@
 package agh.cs.lab1;
 
 import org.junit.jupiter.api.Test;
+import sun.plugin.dom.css.Rect;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AnimalTest {
     @Test
     public void toStringTest(){
-        Animal animal = new Animal();
+        IWorldMap map = new RectangularMap(4,4);
+        Animal animal = new Animal(map, new Vector2d(2,2));
+
         assertEquals("^",animal.toString());
         animal.move(MoveDirection.RIGHT);
         assertEquals(">",animal.toString());
@@ -19,7 +22,9 @@ public class AnimalTest {
 
     @Test
     public void orientationTest(){
-        Animal animal = new Animal();
+        IWorldMap map = new RectangularMap(4,4);
+        Animal animal = new Animal(map, new Vector2d(2,2));
+        
         assertEquals("^",animal.toString());
         animal.move(MoveDirection.RIGHT);
         assertEquals(">",animal.toString());
@@ -36,7 +41,8 @@ public class AnimalTest {
 
     @Test
     public void borderTest(){
-        Animal animal = new Animal();
+        IWorldMap map = new RectangularMap(4,4);
+        Animal animal = new Animal(map, new Vector2d(2,2));
 
         for(int i=0;i<5;i++)
             animal.move(MoveDirection.FORWARD);

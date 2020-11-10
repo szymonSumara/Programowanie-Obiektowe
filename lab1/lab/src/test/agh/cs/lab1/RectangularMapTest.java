@@ -2,8 +2,7 @@ package agh.cs.lab1;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RectangularMapTest {
 
@@ -29,18 +28,9 @@ public class RectangularMapTest {
         assertTrue(map.canMoveTo(new Vector2d(3,3)));
     }
 
-    @Test
-    public void  placeTest(){
-        RectangularMap  map = new  RectangularMap(4,4);
-        assertTrue(!map.place(new Animal(map,new Vector2d(-1,0))));
-        assertTrue(map.place(new Animal(map,new Vector2d(3,4))));
-        assertTrue(!map.place(new Animal(map,new Vector2d(3,4))));
-        assertTrue(!map.place(new Animal(map,new Vector2d(6,7))));
-        assertTrue(map.place(new Animal(map,new Vector2d(2,1))));
-    }
 
     @Test
-    public void objectAtTest(){
+    public void objectAtAndPlaceTest(){
         RectangularMap  map = new  RectangularMap(6,4);
         Animal animal1 = new Animal(map,new Vector2d(3,1));
         Animal animal2 = new Animal(map,new Vector2d(6,4));

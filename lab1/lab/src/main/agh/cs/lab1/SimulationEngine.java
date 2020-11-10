@@ -9,7 +9,7 @@ public class SimulationEngine implements IEngine{
 
     private MoveDirection []  directions;
     private IWorldMap map;
-    private List<Vector2d> animalsPositions = new ArrayList<>();
+    private List<Animal> animals= new ArrayList<>();
 
     public SimulationEngine(MoveDirection []  directions, IWorldMap map, Vector2d [] positions){
 
@@ -17,8 +17,8 @@ public class SimulationEngine implements IEngine{
         this.map = map;
 
         for(Vector2d position: positions) {
-            if (this.map.place(new Animal(this.map, position)))
-                animalsPositions.add(position);
+            if (map.canMoveTo(position))
+                animals.add(new Animal(map,position));
         }
     }
 
@@ -27,15 +27,11 @@ public class SimulationEngine implements IEngine{
         int actualAnimalIndex = 0;
 
         for(MoveDirection direction:this.directions){
-            Object object = map.objectAt(animalsPositions.get(actualAnimalIndex));
-            if(object instanceof Animal) {
-                Animal animal = (Animal) object;
-                animal.move(direction);
-                animalsPositions.set(actualAnimalIndex, animal.getPosition());
-                actualAnimalIndex =(actualAnimalIndex +1)%animalsPositions.size();
-                System.out.println(map);
-                win.updateContent(map.toString());
-            }
+            animals.get(actualAnimalIndex).move(direction);
+            actualAnimalIndex =(actualAnimalIndex +1)%animals.size();
+            System.out.println(map);
+            win.updateContent(map.toString());
+
         }
     }
 }

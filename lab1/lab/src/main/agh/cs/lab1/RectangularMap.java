@@ -16,7 +16,7 @@ public class RectangularMap extends AbstractWorldMap{
                 && position.follows(this.southWestCorner)
                 && !isOccupied(position);
     }
-
+    @Override
     public String toString(){
         return  new MapVisualizer(this).draw(southWestCorner,northEastCorner);
     }
