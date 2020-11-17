@@ -7,10 +7,12 @@ public class Animal extends AbstractWorldMapElement{
 
     public Animal(IWorldMap map){
         super(map, new Vector2d(2,2));
+        map.place(this);
     }
 
     public Animal(IWorldMap map, Vector2d initialPosition){
         super(map, initialPosition);
+        map.place(this);
     }
 
     @Override

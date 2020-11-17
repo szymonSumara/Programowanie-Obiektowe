@@ -14,8 +14,13 @@ public class RectangularMap extends AbstractWorldMap{
                 && position.follows(this.southWestCorner)
                 && !isOccupied(position);
     }
-    @Override
-    public String toString(){
-        return mapVisualizer.draw(southWestCorner,northEastCorner);
+
+    protected Vector2d getNorthEastCorner(){
+        return new Vector2d(northEastCorner.x , northEastCorner.y);
     }
+
+    protected Vector2d getSouthWestCorner(){
+        return new Vector2d(southWestCorner.x , southWestCorner.y);
+    }
+
 }

@@ -29,13 +29,14 @@ public class GrassFieldTest {
         assertTrue(map.canMoveTo(new Vector2d(3,3)));
     }
 
+
     @Test
     public void objectAtAndPlaceTest(){
         IWorldMap  map = new GrassField(10);
         Animal animal1 = new Animal(map,new Vector2d(3,1));
         Animal animal2 = new Animal(map,new Vector2d(6,4));
         assertTrue(  map.objectAt(new Vector2d(0,0)) == null
-                        || map.objectAt(new Vector2d(0,0)) instanceof Grass);
+                || map.objectAt(new Vector2d(0,0)) instanceof Grass);
         assertEquals(animal1,map.objectAt(new Vector2d(3,1)));
         assertEquals(animal2,map.objectAt(new Vector2d(6,4)));
 

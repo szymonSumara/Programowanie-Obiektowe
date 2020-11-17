@@ -13,12 +13,12 @@ abstract class AbstractWorldMap implements IWorldMap{
         return  !(objectAt(position) instanceof Animal);
     }
 
-    public boolean place(IMapElement mapElement){
-        Vector2d tmpPosition = mapElement.getPosition();
+    public boolean place(Animal animal){
+        Vector2d tmpPosition = animal.getPosition();
         if(!canMoveTo(tmpPosition)){
             return false;
         }
-        mapElements.add(0,mapElement);
+        mapElements.add(0,animal);
         return true;
     }
 
@@ -35,5 +35,14 @@ abstract class AbstractWorldMap implements IWorldMap{
         }
         return null;
     }
+
+    @Override
+    public String toString(){
+        return  mapVisualizer.draw(getSouthWestCorner(),getNorthEastCorner());
+    }
+
+    protected abstract Vector2d getNorthEastCorner();
+
+    protected abstract Vector2d getSouthWestCorner();
 
 }
