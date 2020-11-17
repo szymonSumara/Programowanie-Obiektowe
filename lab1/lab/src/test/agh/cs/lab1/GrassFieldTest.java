@@ -2,8 +2,6 @@ package agh.cs.lab1;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Vector;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GrassFieldTest {
@@ -11,11 +9,11 @@ public class GrassFieldTest {
     @Test
     public void isOccupiedTest(){
         IWorldMap  map = new GrassField(10);
-        map.place(new Animal(map,new Vector2d(6,4)));
-        map.place(new Animal(map,new Vector2d(3,0)));
+        new Animal(map,new Vector2d(6,4));
+        new Animal(map,new Vector2d(3,0));
         assertTrue(map.isOccupied(new Vector2d(6,4)));
-        assertTrue(!map.isOccupied(new Vector2d(3,4)));
-        assertTrue(!map.isOccupied(new Vector2d(0,3)));
+        assertTrue((!map.isOccupied(new Vector2d(3,4))) || (map.objectAt(new Vector2d(3,4)) instanceof Grass));
+        assertTrue((!map.isOccupied(new Vector2d(0,3))) || (map.objectAt(new Vector2d(0,3)) instanceof Grass));
     }
 
 
@@ -37,7 +35,7 @@ public class GrassFieldTest {
         Animal animal1 = new Animal(map,new Vector2d(3,1));
         Animal animal2 = new Animal(map,new Vector2d(6,4));
         assertTrue(  map.objectAt(new Vector2d(0,0)) == null
-                        || map.objectAt(new Vector2d(0,0))== "*");
+                        || map.objectAt(new Vector2d(0,0)) instanceof Grass);
         assertEquals(animal1,map.objectAt(new Vector2d(3,1)));
         assertEquals(animal2,map.objectAt(new Vector2d(6,4)));
 

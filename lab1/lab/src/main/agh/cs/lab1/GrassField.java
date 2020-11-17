@@ -7,7 +7,7 @@ public class GrassField extends AbstractWorldMap{
 
     public GrassField(int n){
         int range = (int)Math.sqrt(n*10);
-        mapView = new MapVisualizer(this);
+        this.mapVisualizer = new MapVisualizer(this);
 
         int inserted = 0;
         while(inserted < n){
@@ -15,10 +15,21 @@ public class GrassField extends AbstractWorldMap{
             int y = new Random().nextInt(range);
 
             if(!isOccupied(new Vector2d(x,y))){
-                mapElements.add(new Grass(new Vector2d(x,y)));
+                new Grass(this,new Vector2d(x,y));
                 inserted+=1;
             }
         }
+    }
+
+    @Override
+    public boolean place(IMapElement mapElement){
+        if(mapElement instanceof Animal)
+            return super.place(mapElement);
+        else if(mapElement instanceof Grass){
+            mapElements.add(mapElement);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -31,6 +42,6 @@ public class GrassField extends AbstractWorldMap{
             northEastCorner = northEastCorner.upperRight(mapElement.getPosition());
         }
 
-        return  mapView.draw(southWestCorner,northEastCorner);
+        return  mapVisualizer.draw(southWestCorner,northEastCorner);
     }
 }
