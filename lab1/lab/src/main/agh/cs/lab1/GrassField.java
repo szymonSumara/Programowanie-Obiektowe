@@ -11,7 +11,7 @@ public class GrassField extends AbstractWorldMap{
 
         int inserted = 0;
         while(inserted < n){
-            int x = new Random().nextInt(range);
+            int x = new Random().nextInt(range);    // czy ten obiekt trzeba tworzyć 2 razy na obrót pętli?
             int y = new Random().nextInt(range);
 
             if(!isOccupied(new Vector2d(x,y))){

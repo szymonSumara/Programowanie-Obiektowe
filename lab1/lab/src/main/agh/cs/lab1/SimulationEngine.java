@@ -9,7 +9,7 @@ public class SimulationEngine implements IEngine{
 
     private MoveDirection []  directions;
     private IWorldMap map;
-    private List<Animal> animals= new ArrayList<>();
+    private List<Animal> animals= new ArrayList<>();    // to pole może być finalne
 
     public SimulationEngine(MoveDirection []  directions, IWorldMap map, Vector2d [] positions){
 
@@ -23,7 +23,7 @@ public class SimulationEngine implements IEngine{
     }
 
     public void run(){
-        Window win = new Window(new JLabel(map.toString()));
+        Window win = new Window(new JLabel(map.toString()));    // win to niezbyt dobra nazwa
         int actualAnimalIndex = 0;
 
         for(MoveDirection direction:this.directions){

@@ -4,10 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 abstract class AbstractWorldMap implements IWorldMap{
-    protected Vector2d northEastCorner;
+    protected Vector2d northEastCorner; // czy to na pewno jest część wspólna?
     protected Vector2d southWestCorner;
-    protected List<IMapElement> mapElements = new LinkedList<>();
-    protected MapVisualizer mapVisualizer;
+    protected List<IMapElement> mapElements = new LinkedList<>();   // to pole może być finalne
+    protected MapVisualizer mapVisualizer;  // to pole może być finalne i prywatne
 
     public boolean canMoveTo(Vector2d position){
         return  !(objectAt(position) instanceof Animal);

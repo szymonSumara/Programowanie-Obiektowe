@@ -9,7 +9,7 @@ public class SymulatorEngineTest{
     public void runTest(){
 
 
-        MoveDirection[] directions = new OptionsParser().parse(new String [] {"f", "b", "r", "l", "f", "f", "r", "r","f","f","f","f","f","f","f","f"});
+        MoveDirection[] directions = new OptionsParser().parse(new String [] {"f", "b", "r", "l", "f", "f", "r", "r","f","f","f","f","f","f","f","f"}); // jedna symulacja to trochę mało, żeby stwierdzić, że przetestowane
 
         IWorldMap map = new RectangularMap(10, 5);
         Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };

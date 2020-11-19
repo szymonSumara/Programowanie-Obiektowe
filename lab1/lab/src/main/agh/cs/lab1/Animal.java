@@ -7,7 +7,7 @@ public class Animal extends AbstractWorldMapElement{
 
     public Animal(IWorldMap map){
         super(map, new Vector2d(2,2));
-        map.place(this);
+        map.place(this);    // a jeśli się nie uda?
     }
 
     public Animal(IWorldMap map, Vector2d initialPosition){
