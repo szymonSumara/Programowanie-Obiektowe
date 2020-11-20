@@ -1,5 +1,7 @@
 package agh.cs.lab1;
 
+import java.util.Objects;
+
 public class Vector2d {
     public final int x;
     public final int y;
@@ -9,6 +11,7 @@ public class Vector2d {
         this.y = y;
     }
 
+    @Override
     public String toString() {
         return "(" + x + "," + y + ")";
     }
@@ -37,6 +40,7 @@ public class Vector2d {
         return new Vector2d(this.x - other.x, this.y - other.y);
     }
 
+    @Override
     public boolean equals(Object other) {
         if (this == other)
             return true;
@@ -47,6 +51,11 @@ public class Vector2d {
             return true;
         else
             return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.x, this.y);
     }
 
     public Vector2d opposite() {
