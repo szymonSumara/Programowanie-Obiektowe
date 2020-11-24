@@ -132,4 +132,19 @@ public class Vector2dTest {
         assertEquals(new Vector2d(0, 0), vec3.opposite());
         assertEquals(new Vector2d(-132, 123), vec4.opposite());
     }
+
+    @Test
+    public void hashAndEqTest(){
+        Vector2d vec1 = new Vector2d(1,2);
+        Vector2d vec2 = new Vector2d(3,2);
+        Vector2d vec3 = new Vector2d(8,3);
+        Vector2d vec4 = new Vector2d(1,2);
+
+        assertEquals(vec1.equals(vec2),vec1.hashCode() == vec2.hashCode());
+        assertEquals(vec3.equals(vec4),vec3.hashCode() == vec4.hashCode());
+        assertEquals(vec4.equals(vec1),vec1.hashCode() == vec4.hashCode());
+        assertEquals(vec1.equals(vec3),vec1.hashCode() == vec3.hashCode());
+
+
+    }
 }

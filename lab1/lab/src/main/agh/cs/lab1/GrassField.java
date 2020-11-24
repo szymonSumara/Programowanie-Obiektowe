@@ -30,7 +30,7 @@ public class GrassField extends AbstractWorldMap{
             return object;
         return  grasses.get(position);
     }
-
+    
     protected Vector2d getNorthEastCorner(){
         Vector2d northEastCorner = new Vector2d(Integer.MIN_VALUE,Integer.MIN_VALUE);
 
