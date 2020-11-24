@@ -31,13 +31,12 @@ public class GrassField extends AbstractWorldMap{
         return  grasses.get(position);
     }
 
-
-
-    //Poprawić to
     protected Vector2d getNorthEastCorner(){
         Vector2d northEastCorner = new Vector2d(Integer.MIN_VALUE,Integer.MIN_VALUE);
+
         for(IMapElement mapElement:grasses.values())
             northEastCorner = northEastCorner.upperRight(mapElement.getPosition());
+
         for(IMapElement mapElement:animals.values())
             northEastCorner = northEastCorner.upperRight(mapElement.getPosition());
 
@@ -46,10 +45,13 @@ public class GrassField extends AbstractWorldMap{
 
     protected Vector2d getSouthWestCorner(){
         Vector2d southWestCorner = new Vector2d(Integer.MAX_VALUE,Integer.MAX_VALUE);
+
         for(IMapElement mapElement: grasses.values())
             southWestCorner = southWestCorner.lowerLeft(mapElement.getPosition());
+
         for(IMapElement mapElement: animals.values())
             southWestCorner = southWestCorner.lowerLeft(mapElement.getPosition());
+
         return southWestCorner;
     }
 

@@ -41,9 +41,10 @@ abstract class AbstractWorldMap implements IWorldMap , IPositionChangeObserver{
     protected abstract Vector2d getSouthWestCorner();
 
     public void positionChanged(Vector2d oldPosition, Vector2d newPosition){
-        animals.put(newPosition, animals.get(oldPosition));
-        animals.remove(oldPosition);
+        if(animals.get(oldPosition).getPosition().equals(newPosition)) {
+            animals.put(newPosition, animals.get(oldPosition));
+            animals.remove(oldPosition);
+        }
     }
-
 }
 

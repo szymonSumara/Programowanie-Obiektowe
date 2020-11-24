@@ -15,13 +15,20 @@ public class Animal extends AbstractWorldMapElement{
     }
 
     public boolean addObserver(IPositionChangeObserver observer){
-        observers.add(observer);
-        return true;//dodac kontrole błędów
+        if(!observers.contains(observer)) {
+            observers.add(observer);
+            return observers.contains(observer);
+        }
+        return false;
     }
 
     public boolean removeObserver(IPositionChangeObserver observer){
-        observers.remove(observer);
-        return true;//dodac kontrole błędów;
+
+        if(observers.contains(observer)){
+            observers.remove(observer);
+            return !observers.contains(observer);
+        }
+        return false;
     }
 
     public Animal(IWorldMap map, Vector2d initialPosition){
@@ -42,15 +49,18 @@ public class Animal extends AbstractWorldMapElement{
             case FORWARD:
                 tmpPosition = position.add(orientation.toUnitVector());
                 if( map.canMoveTo(tmpPosition)){
-                    positionChanged(position,tmpPosition);
+                    Vector2d oldPosition = position;
                     position = tmpPosition;
+                    positionChanged(oldPosition,position);
                 }
                 break;
             case BACKWARD:
                 tmpPosition = position.subtract(orientation.toUnitVector());
-                if(map.canMoveTo(tmpPosition) )
-                    positionChanged(position,tmpPosition);
+                if(map.canMoveTo(tmpPosition) ) {
+                    Vector2d oldPosition = position;
                     position = tmpPosition;
+                    positionChanged(oldPosition, position);
+                }
                 break;
         }
 

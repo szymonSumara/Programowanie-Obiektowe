@@ -13,7 +13,7 @@ public class RectangularMap extends AbstractWorldMap{
     public boolean canMoveTo(Vector2d position){
         return  position.precedes(this.northEastCorner)
                 && position.follows(this.southWestCorner)
-                && !isOccupied(position);
+                && super.canMoveTo(position);
     }
 
     protected Vector2d getNorthEastCorner(){

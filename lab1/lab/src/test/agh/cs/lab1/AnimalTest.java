@@ -1,9 +1,9 @@
 package agh.cs.lab1;
 
 import org.junit.jupiter.api.Test;
-import sun.plugin.dom.css.Rect;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AnimalTest {
     @Test
@@ -65,7 +65,21 @@ public class AnimalTest {
 
     }
 
+    @Test
+    public void addAndRemoveObserverTest(){
+        IWorldMap map1 = new RectangularMap(4,4);
+        IWorldMap map2 = new RectangularMap(4,4);
+        IWorldMap map3 = new GrassField(10);
 
+        Animal animal = new Animal(map1,new Vector2d(2,2));
+
+        assertFalse(animal.addObserver((IPositionChangeObserver) map1));
+        assertTrue(animal.addObserver((IPositionChangeObserver) map2));
+        assertFalse(animal.addObserver((IPositionChangeObserver) map2));
+        assertTrue(animal.removeObserver((IPositionChangeObserver) map2));
+        assertTrue(animal.addObserver((IPositionChangeObserver) map2));
+        assertTrue(animal.addObserver((IPositionChangeObserver) map3));
+    }
 
 
 }
