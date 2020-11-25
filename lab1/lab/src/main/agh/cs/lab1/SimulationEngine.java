@@ -24,7 +24,7 @@ public class SimulationEngine implements IEngine{
     }
 
     public void run(){
-        Window win = new Window(new JLabel(map.toString()));
+        Window win = new Window(new JLabel(map.toString()));    // czy to nie wykracza poza odpowiedzialność SimulationEngine?
         int actualAnimalIndex = 0;
 
         for(MoveDirection direction:this.directions){

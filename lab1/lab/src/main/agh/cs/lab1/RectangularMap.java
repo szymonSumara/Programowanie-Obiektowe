@@ -7,7 +7,7 @@ public class RectangularMap extends AbstractWorldMap{
     private Vector2d northEastCorner;
 
     public RectangularMap(int width,int lenght){
-        this.northEastCorner = new Vector2d(width,lenght);
+        this.northEastCorner = new Vector2d(width,lenght);  // width - 1
     }
     @Override
     public boolean canMoveTo(Vector2d position){
@@ -17,7 +17,7 @@ public class RectangularMap extends AbstractWorldMap{
     }
 
     protected Vector2d getNorthEastCorner(){
-        return new Vector2d(northEastCorner.x , northEastCorner.y);
+        return new Vector2d(northEastCorner.x , northEastCorner.y); // czy jest potrzeba kopiowania wektora?
     }
 
     protected Vector2d getSouthWestCorner(){

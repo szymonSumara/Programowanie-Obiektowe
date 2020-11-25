@@ -5,8 +5,8 @@ import java.util.Map;
 
 abstract class AbstractWorldMap implements IWorldMap , IPositionChangeObserver{
 
-    Map<Vector2d,Animal> animals = new HashMap<>();
-    protected MapVisualizer mapVisualizer  = new MapVisualizer(this);;
+    Map<Vector2d,Animal> animals = new HashMap<>(); // czy świadomie Pan wybrał ten modyfikator dostępu?
+    protected MapVisualizer mapVisualizer  = new MapVisualizer(this);;  // to pole może być finalne i prywatne
 
     public boolean canMoveTo(Vector2d position){
         return  !(objectAt(position) instanceof Animal);
@@ -22,7 +22,7 @@ abstract class AbstractWorldMap implements IWorldMap , IPositionChangeObserver{
     }
 
     public boolean isOccupied(Vector2d position){
-        if(objectAt(position) == null)
+        if(objectAt(position) == null)  // można pisać return warunek
             return false;
         return true;
     }

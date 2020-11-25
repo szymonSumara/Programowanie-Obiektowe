@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SymulatorEngineTest{
+public class SymulatorEngineTest{   // lepiej używać faktycznej nazwy klasy - łatwiej wyszukiwać
     @Test
     public void runTest(){
 

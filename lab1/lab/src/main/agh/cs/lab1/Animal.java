@@ -7,7 +7,7 @@ import java.util.List;
 public class Animal extends AbstractWorldMapElement{
 
     private MapDirection orientation = MapDirection.NORTH;
-    private List<IPositionChangeObserver> observers = new LinkedList<>();
+    private List<IPositionChangeObserver> observers = new LinkedList<>();   // to pole może być finalne
 
     public Animal(IWorldMap map){
         super(map, new Vector2d(2,2));
@@ -31,7 +31,7 @@ public class Animal extends AbstractWorldMapElement{
         return false;
     }
 
-    public Animal(IWorldMap map, Vector2d initialPosition){
+    public Animal(IWorldMap map, Vector2d initialPosition){ // DRY + konstruktory warto trzymać obok siebie
         super(map, initialPosition);
         map.place(this);
     }
