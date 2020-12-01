@@ -8,7 +8,6 @@ public class SymulatorEngineTest{
     @Test
     public void runTest(){
 
-
         MoveDirection[] directions = new OptionsParser().parse(new String [] {"f", "b", "r", "l", "f", "f", "r", "r","f","f","f","f","f","f","f","f"});
 
         IWorldMap map = new RectangularMap(10, 5);
@@ -18,10 +17,7 @@ public class SymulatorEngineTest{
 
         assertFalse(map.objectAt(new Vector2d(0,0)) instanceof Animal);
         assertTrue(map.objectAt(new Vector2d(2,0)) instanceof Animal);
-        assertTrue(map.objectAt(new Vector2d(3,5)) instanceof Animal);
+        assertTrue(map.objectAt(new Vector2d(3,4)) instanceof Animal);
 
     }
-
-
-
 }

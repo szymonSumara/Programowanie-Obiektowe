@@ -6,11 +6,10 @@ public enum  MapDirection {
     SOUTH("v",new Vector2d(0,-1)),
     WEST("<",new Vector2d(-1,0));
 
-    private Vector2d unitVector;
-    private String   stringRepresentation;
+    private final Vector2d unitVector;
+    private final String   stringRepresentation;
 
-
-    private MapDirection(String stringRepresentation , Vector2d unitVector){
+    MapDirection(String stringRepresentation , Vector2d unitVector){
         this.unitVector = unitVector;
         this.stringRepresentation = stringRepresentation;
     }

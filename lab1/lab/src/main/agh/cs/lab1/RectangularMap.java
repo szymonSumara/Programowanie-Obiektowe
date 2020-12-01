@@ -3,11 +3,11 @@ package agh.cs.lab1;
 
 public class RectangularMap extends AbstractWorldMap{
 
-    private Vector2d southWestCorner = new Vector2d(0,0);;
-    private Vector2d northEastCorner;
+    private final Vector2d southWestCorner = new Vector2d(0,0);
+    private final Vector2d northEastCorner;
 
-    public RectangularMap(int width,int lenght){
-        this.northEastCorner = new Vector2d(width,lenght);
+    public RectangularMap(int width,int length){
+        this.northEastCorner = new Vector2d(width-1,length-1);
     }
     @Override
     public boolean canMoveTo(Vector2d position){
@@ -17,11 +17,11 @@ public class RectangularMap extends AbstractWorldMap{
     }
 
     protected Vector2d getNorthEastCorner(){
-        return new Vector2d(northEastCorner.x , northEastCorner.y);
+        return northEastCorner;
     }
 
     protected Vector2d getSouthWestCorner(){
-        return new Vector2d(southWestCorner.x , southWestCorner.y);
+        return southWestCorner;
     }
 
 }

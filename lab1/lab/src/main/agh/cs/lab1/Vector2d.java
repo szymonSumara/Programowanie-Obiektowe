@@ -40,6 +40,18 @@ public class Vector2d {
         return new Vector2d(this.x - other.x, this.y - other.y);
     }
 
+    public boolean isAfterInXOrder(Vector2d other){
+        if(this.x == other.x)
+            return this.y > other.y;
+        return this.x > other.x;
+    }
+
+    public boolean isAfterInYOrder(Vector2d other){
+        if(this.y == other.y)
+            return this.x > other.x;
+        return this.y > other.y;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other)
@@ -47,10 +59,7 @@ public class Vector2d {
         if (!(other instanceof Vector2d))
             return false;
         Vector2d that = (Vector2d) other;
-        if (this.x == that.x && this.y == that.y)
-            return true;
-        else
-            return false;
+        return this.x == that.x && this.y == that.y;
     }
 
     @Override

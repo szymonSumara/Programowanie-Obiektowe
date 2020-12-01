@@ -7,10 +7,14 @@ import java.util.List;
 public class Animal extends AbstractWorldMapElement{
 
     private MapDirection orientation = MapDirection.NORTH;
-    private List<IPositionChangeObserver> observers = new LinkedList<>();
+    private final List<IPositionChangeObserver> observers = new LinkedList<>();
 
     public Animal(IWorldMap map){
-        super(map, new Vector2d(2,2));
+        this(map,new Vector2d(2,2));
+    }
+
+    public Animal(IWorldMap map, Vector2d initialPosition){
+        super(map, initialPosition);
         map.place(this);
     }
 
@@ -31,10 +35,7 @@ public class Animal extends AbstractWorldMapElement{
         return false;
     }
 
-    public Animal(IWorldMap map, Vector2d initialPosition){
-        super(map, initialPosition);
-        map.place(this);
-    }
+
 
     @Override
     public String toString(){
