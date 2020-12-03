@@ -13,7 +13,7 @@ public class MapBoundary implements IPositionChangeObserver {
 
         AbstractWorldMapElement changedPosition = mapElementsOrderedX.get(0).getValue();
 
-        for (Pair<Vector2d, AbstractWorldMapElement> element : mapElementsOrderedY)
+        for (Pair<Vector2d, AbstractWorldMapElement> element : mapElementsOrderedY) // czy to musi być przeszukiwanie liniowe? podpowiedź: TreeSet
             if (element.getKey().equals(oldPosition) && element.getValue().getPosition().equals(newPosition)) {
                 changedPosition = element.getValue();
                 mapElementsOrderedY.remove(element);
