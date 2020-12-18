@@ -46,4 +46,6 @@ public interface IWorldMap {
      */
     Object objectAt(Vector2d position);
 
+    Vector2d repairOutOfBoundsVector(Vector2d vectorToRepair);
+
 }

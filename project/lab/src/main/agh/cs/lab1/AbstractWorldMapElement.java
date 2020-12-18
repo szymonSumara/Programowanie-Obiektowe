@@ -3,9 +3,9 @@ package agh.cs.lab1;
 abstract public class AbstractWorldMapElement {
 
     protected Vector2d position;
-    protected  final IWorldMap map;
+    protected  final EvolutionMap map;
 
-    public AbstractWorldMapElement(IWorldMap map,Vector2d position){
+    public AbstractWorldMapElement(EvolutionMap map,Vector2d position){
         this.position = position;
         this.map = map;
     }

@@ -40,17 +40,6 @@ public class Vector2d {
         return new Vector2d(this.x - other.x, this.y - other.y);
     }
 
-    public boolean isAfterInXOrder(Vector2d other){
-        if(this.x == other.x)
-            return this.y > other.y;
-        return this.x > other.x;
-    }
-
-    public boolean isAfterInYOrder(Vector2d other){
-        if(this.y == other.y)
-            return this.x > other.x;
-        return this.y > other.y;
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -70,5 +59,24 @@ public class Vector2d {
     public Vector2d opposite() {
         return new Vector2d(-1 * this.x, -1 * this.y);
     }
+
+    public Vector2d convertToBounds(Vector2d northEastCorner,Vector2d southWestCorner ){
+        int newX = this.x;
+        int newY = this.y;
+
+        if(this.x > northEastCorner.x)
+            newX=southWestCorner.x;
+        if(this.y > northEastCorner.y)
+            newY=southWestCorner.y;
+
+
+        if(this.x < southWestCorner.x)
+            newX=northEastCorner.x;
+        if(this.y < southWestCorner.y)
+            newY=northEastCorner.y;
+
+        return new Vector2d(newX,newY);
+    }
+
 
 }

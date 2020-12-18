@@ -1,14 +1,14 @@
 package agh.cs.lab1;
 
 public enum  MapDirection {
-    NORTH("^",new Vector2d(0,1)),
-    NORTHEAST("\\",new Vector2d(1,1)),
-    EAST(">",new Vector2d(1,0)),
-    SOUTHEAST("\\",new Vector2d(1,-1)),
-    SOUTH("v",new Vector2d(0,-1)),
-    SOUTHWEST("/",new Vector2d(-1,-1)),
-    WEST("<",new Vector2d(-1,0)),
-    NORTHWEST("/",new Vector2d(-1,1));
+    NORTH("O",new Vector2d(0,1)),
+    NORTHEAST("O",new Vector2d(1,1)),
+    EAST("O",new Vector2d(1,0)),
+    SOUTHEAST("O",new Vector2d(1,-1)),
+    SOUTH("O",new Vector2d(0,-1)),
+    SOUTHWEST("O",new Vector2d(-1,-1)),
+    WEST("O",new Vector2d(-1,0)),
+    NORTHWEST("O",new Vector2d(-1,1));
 
 
     private final Vector2d unitVector;

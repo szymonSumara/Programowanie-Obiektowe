@@ -147,31 +147,7 @@ public class Vector2dTest {
 
     }
 
-    @Test
-    public void isAfterInXOrderTest(){
-        Vector2d vec1 = new Vector2d(1,2);
-        Vector2d vec2 = new Vector2d(-13,3);
-        Vector2d vec3 = new Vector2d(3,7);
-        Vector2d vec4 = new Vector2d(3,9);
 
-        assertTrue(vec1.isAfterInXOrder(vec2));
-        assertTrue(vec4.isAfterInXOrder(vec3));
-        assertFalse(vec2.isAfterInXOrder(vec1));
-        assertFalse(vec3.isAfterInXOrder(vec4));
-    }
-
-    @Test
-    public void isAfterInYOrderTest(){
-        Vector2d vec1 = new Vector2d(1,2);
-        Vector2d vec2 = new Vector2d(-13,3);
-        Vector2d vec3 = new Vector2d(3,3);
-        Vector2d vec4 = new Vector2d(3,9);
-
-        assertFalse(vec1.isAfterInYOrder(vec2));
-        assertTrue(vec4.isAfterInYOrder(vec3));
-        assertTrue(vec2.isAfterInYOrder(vec1));
-        assertFalse(vec3.isAfterInYOrder(vec4));
-    }
 
 
 }

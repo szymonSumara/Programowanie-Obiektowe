@@ -1,86 +1,53 @@
 package agh.cs.lab1;
 
-/**
- * The map visualizer converts the {@link IWorldMap} map into a string
- * representation.
- *
- * @author apohllo
- */
-public class MapVisualizer {
-    private static final String EMPTY_CELL = " ";
-    private static final String FRAME_SEGMENT = "-";
-    private static final String CELL_SEGMENT = "|";
-    private IWorldMap map;
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
-    /**
-     * Initializes the MapVisualizer with an instance of map to visualize. 
-     * @param map
-     */
-    public MapVisualizer(IWorldMap map) {
+public class MapVisualizer extends JPanel {
+    private final EvolutionMap map;
+    private JLabel mapVisualisation[][];
+    public MapVisualizer(EvolutionMap map) {
         this.map = map;
+        Font f1  = new Font(Font.DIALOG_INPUT, Font.PLAIN,  5);
+        setBorder(new EmptyBorder(0,0,0,0));
+        Border blackline = BorderFactory.createLineBorder(Color.gray);
+        this.mapVisualisation = new JLabel[map.getNorthEastCorner().x][map.getNorthEastCorner().y];
+        for(int i=0;i<this.map.getNorthEastCorner().x;i++)
+            for(int j=0;j<this.map.getNorthEastCorner().y;j++) {
+                this.mapVisualisation[i][j] = new JLabel();
+                //his.mapVisualisation[i][j].setSize(50,50);
+                this.mapVisualisation[i][j].setBorder(blackline);
+                this.mapVisualisation[i][j].setFont(f1);
+                this.mapVisualisation[i][j].setText(" ");
+                this.mapVisualisation[i][j].setOpaque(true);;
+                add(this.mapVisualisation[i][j]);
+            }
+        setLayout(new GridLayout(this.map.getNorthEastCorner().x,this.map.getNorthEastCorner().y));
+        for(int i=0;i<this.map.getNorthEastCorner().x;i++)
+            for(int j=0;j<this.map.getNorthEastCorner().y;j++) {
+               mapVisualisation[i][j].setBackground(Color.ORANGE);
+            }
     }
 
-    /**
-     * Convert selected region of the map into a string. It is assumed that the
-     * indices of the map will have no more than two characters (including the
-     * sign).
-     *
-     * @param lowerLeft  The lower left corner of the region that is drawn.
-     * @param upperRight The upper right corner of the region that is drawn.
-     * @return String representation of the selected region of the map.
-     */
-    public String draw(Vector2d lowerLeft, Vector2d upperRight) {
-        StringBuilder builder = new StringBuilder();
-        for (int i = upperRight.y + 1; i >= lowerLeft.y - 1; i--) {
-            if (i == upperRight.y + 1) {
-                builder.append(drawHeader(lowerLeft, upperRight));
-            }
-            builder.append(String.format("%3d: ", i));
-            for (int j = lowerLeft.x; j <= upperRight.x + 1; j++) {
-                if (i < lowerLeft.y || i > upperRight.y) {
-                    builder.append(drawFrame(j <= upperRight.x));
-                } else {
-                    builder.append(CELL_SEGMENT);
-                    if (j <= upperRight.x) {
-                        builder.append(drawObject(new Vector2d(j, i)));
-                    }
+
+
+    public void updateMap() {
+        for(int i=0;i<this.map.getNorthEastCorner().x;i++)
+            for(int j=0;j<this.map.getNorthEastCorner().y;j++) {
+                if(this.map.getObjectAt(new Vector2d(i,j)) == null) {
+                    this.mapVisualisation[i][j].setBackground(Color.LIGHT_GRAY);
+
+                }
+                else if(this.map.getObjectAt(new Vector2d(i,j)) instanceof Animal) {
+                    this.mapVisualisation[i][j].setBackground(Color.BLACK);
+
+                }else if(this.map.getObjectAt(new Vector2d(i,j)) instanceof Grass){
+
+                    this.mapVisualisation[i][j].setBackground(Color.GREEN);
                 }
             }
-            builder.append(System.lineSeparator());
-        }
-        return builder.toString();
-    }
 
-    private String drawFrame(boolean innerSegment) {
-        if (innerSegment) {
-            return FRAME_SEGMENT + FRAME_SEGMENT;
-        } else {
-            return FRAME_SEGMENT;
-        }
-    }
-
-    private String drawHeader(Vector2d lowerLeft, Vector2d upperRight) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(" y\\x ");
-        for (int j = lowerLeft.x; j < upperRight.x + 1; j++) {
-            builder.append(String.format("%2d", j));
-        }
-        builder.append(System.lineSeparator());
-        return builder.toString();
-    }
-
-    private String drawObject(Vector2d currentPosition) {
-        String result = null;
-        if (this.map.isOccupied(currentPosition)) {
-            Object object = this.map.objectAt(currentPosition);
-            if (object != null) {
-                result = object.toString();
-            } else {
-                result = EMPTY_CELL;
-            }
-        } else {
-            result = EMPTY_CELL;
-        }
-        return result;
     }
 }

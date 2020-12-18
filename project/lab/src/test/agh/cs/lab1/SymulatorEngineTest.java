@@ -1,3 +1,4 @@
+/*
 package agh.cs.lab1;
 
 import org.junit.jupiter.api.Test;
@@ -21,3 +22,4 @@ public class SymulatorEngineTest{
 
     }
 }
+*/
