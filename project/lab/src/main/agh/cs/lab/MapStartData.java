@@ -1,4 +1,4 @@
-package agh.cs.lab1;
+package agh.cs.lab;
 
 public class MapStartData {
     int width;

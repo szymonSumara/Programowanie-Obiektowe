@@ -1,4 +1,4 @@
-package agh.cs.lab1;
+package agh.cs.lab;
 
 
 import java.util.*;
@@ -11,19 +11,20 @@ public class EvolutionMap implements IPositionChangeObserver {
     private final Vector2d northEastCorner;
     private final Vector2d jungleSouthWestCorner;
     private final Vector2d jungleNorthEastCorner;
+    private final int animalStartEnergy;
 
 
-    protected final Map<Vector2d, List<Animal>> animals = new HashMap<>();
     private final MapVisualizer mapVisualizer;
 
+    protected final Map<Vector2d, List<Animal>> animals = new HashMap<>();
     private final List<Vector2d> freeFieldsInJungle = new LinkedList<>();
     private final List<Vector2d> freeFieldsOutJungle = new LinkedList<>();
-
     private final Map<Vector2d, Grass> grasses = new HashMap<>();
 
+    public EvolutionMap(int width,int height,int jungleRatio,int animalStartEnergy){
+        this.animalStartEnergy = animalStartEnergy;
 
-    public EvolutionMap(Vector2d northEastCorner,int jungleRatio){
-        this.northEastCorner = northEastCorner;
+        this.northEastCorner = new Vector2d(width-1,height-1);
 
         int jungleWidth = northEastCorner.x/jungleRatio;
         int jungleHeight = northEastCorner.y/jungleRatio;
@@ -45,47 +46,34 @@ public class EvolutionMap implements IPositionChangeObserver {
 
     }
 
-    public boolean placeGrassInJungle(){
-        System.out.println(freeFieldsInJungle.size());
-        if(freeFieldsInJungle.isEmpty()){
-            System.out.println("ala ma asa");
-            return false;
-        }
-        int randomIndex = new Random().nextInt(freeFieldsInJungle.size());
-        grasses.put(freeFieldsInJungle.get(randomIndex),new Grass(this,freeFieldsInJungle.get(randomIndex)));
-        freeFieldsInJungle.remove(randomIndex);
-        return true;
+    public int getAnimalStartEnergy() {
+        return animalStartEnergy;
     }
 
-    public boolean placeGrassOutJungle(){
-        if(freeFieldsOutJungle.isEmpty())
-            return false;
-        int randomIndex = new Random().nextInt(freeFieldsOutJungle.size());
-        grasses.put(freeFieldsOutJungle.get(randomIndex),new Grass(this,freeFieldsOutJungle.get(randomIndex)));
-        freeFieldsOutJungle.remove(randomIndex);
-        return true;
+    public Grass placeGrassInJungle(){
+        return placeGrass(this.freeFieldsInJungle);
     }
 
-    public boolean canMoveTo(Vector2d position){
-        if(position.follows(getSouthWestCorner()) && position.precedes(getNorthEastCorner()))
-            return true;
-        return false;
+    public Grass placeGrassOutJungle(){
+        return placeGrass(this.freeFieldsOutJungle);
     }
 
-
-    public Object objectAt(Vector2d position){
+    public Object getObjectAt(Vector2d position){
         if(!animals.get(position).isEmpty())
             return animals.get(position).get(0);
         return grasses.get(position);
     }
 
+    public MapVisualizer getVisualisation(){
+        return  mapVisualizer;
+    }
 
-    public Object getObjectAt(Vector2d position){
-        if(!getAnimalsAt(position).isEmpty())
-            return getAnimalsAt(position).get(0);
-        if(getGrassAt(position)!=null)
-            return getGrassAt(position);
-        return null;
+    public Vector2d getNorthEastCorner(){
+        return northEastCorner;
+    }
+
+    public Vector2d getSouthWestCorner(){
+        return southWestCorner;
     }
 
     public Grass getGrassAt(Vector2d position){
@@ -94,12 +82,21 @@ public class EvolutionMap implements IPositionChangeObserver {
 
     public List<Animal> getAnimalsAt(Vector2d position){
         return animals.get(position).stream()
-                    .sorted((o1,o2) -> o1.compareTo(o2))
-                    .collect(Collectors.toList());
+                .sorted((o1,o2) -> o1.compareTo(o2))
+                .collect(Collectors.toList());
+    }
+
+    public List<Vector2d> getFreeFieldsNextTo(Vector2d position){
+        List<Vector2d> freeFields = new LinkedList<>();
+        for(MapDirection direction : MapDirection.values())
+            if(getObjectAt(position.add(direction.toUnitVector()).convertToBounds(this.southWestCorner,this.northEastCorner))==null)
+                freeFields.add(position.add(direction.toUnitVector()).convertToBounds(this.southWestCorner,this.northEastCorner));
+
+        return freeFields;
     }
 
     public void removeGrass(Vector2d position){
-        grasses.remove(position);System.out.println(grasses.size());;
+        grasses.remove(position);
     }
 
     public void removeAnimal(Animal animal){
@@ -109,49 +106,29 @@ public class EvolutionMap implements IPositionChangeObserver {
             else
                 this.freeFieldsOutJungle.add(animal.getPosition());
         animals.get(animal.getPosition()).remove(animal);
-    }
-
-    public MapVisualizer getVisualistaion(){
-        return  mapVisualizer;
-    }
-
-
-    public Vector2d getNorthEastCorner(){
-        return northEastCorner;
-    };
-
-    public Vector2d getSouthWestCorner(){
-        return southWestCorner;
-    };
-
-
-
-    private boolean isInJungle(Vector2d position){
-        return  position.follows(jungleSouthWestCorner) && position.precedes(jungleNorthEastCorner);
+        this.mapVisualizer.updateMapElementAt(animal.getPosition());
     }
 
     public boolean place(Animal animal){
         List<Animal> animalsAtList= animals.get(animal.getPosition());
         animalsAtList.add(animal);
         animal.addObserver(this);
+
         if( isInJungle(animal.getPosition()) )
             freeFieldsInJungle.remove(animal.getPosition());
         else
             freeFieldsOutJungle.remove(animal.getPosition());
 
-
         return true;
+
     }
 
-
-    public void positionChanged(Vector2d oldPosition,Vector2d newPosition,AbstractWorldMapElement element){
-        if(!(element instanceof Animal))
-            return;
+    public void positionChanged(Vector2d oldPosition,Vector2d newPosition,Animal animal){
 
         List<Animal> animalsListR = animals.get(oldPosition);
         List<Animal> animalsListI = animals.get(newPosition);
-        animalsListI.add((Animal) element);
-        animalsListR.remove(element);
+        animalsListI.add((Animal) animal);
+        animalsListR.remove(animal);
 
         if( isInJungle(newPosition) )
             freeFieldsInJungle.remove(newPosition);
@@ -164,6 +141,25 @@ public class EvolutionMap implements IPositionChangeObserver {
             else
                 freeFieldsOutJungle.add(oldPosition);
 
+        mapVisualizer.updateMapElementAt(oldPosition);
+        mapVisualizer.updateMapElementAt(newPosition);
+    }
+
+    private Grass placeGrass(List <Vector2d> freeFields){
+        if(freeFields.isEmpty())
+            return null;
+        int randomIndex = new Random().nextInt(freeFields.size());
+        Grass newGrass =  new Grass(this,freeFields.get(randomIndex));
+
+        grasses.put(newGrass.getPosition(), newGrass);
+        freeFields.remove(randomIndex);
+        this.mapVisualizer.updateMapElementAt(newGrass.getPosition());
+
+        return newGrass;
+    }
+
+    private boolean isInJungle(Vector2d position){
+        return  position.follows(jungleSouthWestCorner) && position.precedes(jungleNorthEastCorner);
     }
 
 

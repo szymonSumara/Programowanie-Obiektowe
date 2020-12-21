@@ -1,11 +1,10 @@
-package agh.cs.lab1;
+package agh.cs.lab;
 
-import java.util.Objects;
 import java.util.Random;
 
 public class GeneticCode {
     private final int  geneticCodeSize = 32;
-    private int[] geneticCode = new int[this.geneticCodeSize];
+    private final int[] geneticCode = new int[this.geneticCodeSize];
     private final int numberOfPossibleGenes = 8;
     private final Random random = new Random();
 
@@ -18,22 +17,29 @@ public class GeneticCode {
     }
 
     public GeneticCode(GeneticCode strongerAnimalGeneticCode,GeneticCode weakerAnimalGeneticCode){
-        Integer firstGenCut = new Random().nextInt(this.geneticCodeSize-2);
-        Integer secondGenCut = new Random().nextInt(this.geneticCodeSize - firstGenCut -1);
+        int firstGenCut = new Random().nextInt(this.geneticCodeSize-2);
+        int secondGenCut = new Random().nextInt(this.geneticCodeSize - firstGenCut -1);
         secondGenCut+=firstGenCut + 1;
 
         for(int i=0;i<firstGenCut;i++)
             this.geneticCode[i] =  strongerAnimalGeneticCode.getGeneAt(i);
 
         for(int i=firstGenCut;i<secondGenCut;i++)
-            this.geneticCode[i] =  strongerAnimalGeneticCode.getGeneAt(i);
+            this.geneticCode[i] =  weakerAnimalGeneticCode.getGeneAt(i);
 
         for(int i=secondGenCut;i<this.geneticCodeSize;i++)
             this.geneticCode[i] =  strongerAnimalGeneticCode.getGeneAt(i);
 
-
         if(!isCorrect())
             this.repairGenCode();
+    }
+
+    public int getRandomGene(){
+        return this.geneticCode[random.nextInt(this.geneticCodeSize)];
+    }
+
+    public int getGeneAt(int positionGene){
+        return this.geneticCode[positionGene];
     }
 
     private boolean isCorrect(){
@@ -66,32 +72,15 @@ public class GeneticCode {
         }
     }
 
-    public int getRandomGene(){
-        return this.geneticCode[random.nextInt(this.geneticCodeSize)];
-    }
-
-    public int getGeneAt(int positionGene){
-        return this.geneticCode[positionGene];
-    }
 
     @Override
-    public boolean equals(Object other) {
-        if (this == other)
-            return true;
-        if (!(other instanceof GeneticCode))
-            return false;
+    public String toString(){
+        StringBuilder geneStringRepresentation = new StringBuilder();
 
-        for(int i=0;i<this.geneticCodeSize;i++)
-            if(this.geneticCode[i] != ((GeneticCode) other).geneticCode[i])
-                return false;
+        for(int gene: this.geneticCode)
+            geneStringRepresentation.append(gene);
 
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.geneticCode);
+        return geneStringRepresentation.toString();
     }
 
 }

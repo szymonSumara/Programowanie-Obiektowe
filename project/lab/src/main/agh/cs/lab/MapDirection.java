@@ -1,4 +1,6 @@
-package agh.cs.lab1;
+package agh.cs.lab;
+
+import java.util.Random;
 
 public enum  MapDirection {
     NORTH("O",new Vector2d(0,1)),
@@ -35,6 +37,10 @@ public enum  MapDirection {
 
     public  Vector2d toUnitVector(){
         return unitVector;
+    }
+
+    public static MapDirection getRandomDirection(){
+        return values()[new Random().nextInt(values().length)];
     }
 
 }

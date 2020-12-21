@@ -1,4 +1,4 @@
-package agh.cs.lab1;
+package agh.cs.lab;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
