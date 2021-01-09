@@ -3,10 +3,10 @@ package agh.cs.lab;
 import java.util.Random;
 
 public class GeneticCode {
-    private final int  geneticCodeSize = 32;
+    private final int  geneticCodeSize = 32;    // to pole mogłoby być statyczne
     private final int[] geneticCode = new int[this.geneticCodeSize];
     private final int numberOfPossibleGenes = 8;
-    private final Random random = new Random();
+    private final Random random = new Random(); // to pole mogłoby być statyczne
 
     public GeneticCode(){
         for(int i = 0;i<this.geneticCodeSize;i++)
@@ -38,7 +38,7 @@ public class GeneticCode {
         return this.geneticCode[random.nextInt(this.geneticCodeSize)];
     }
 
-    public int getGeneAt(int positionGene){
+    public int getGeneAt(int positionGene){ // czy to jest potrzebne?
         return this.geneticCode[positionGene];
     }
 

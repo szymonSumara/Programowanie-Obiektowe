@@ -1,4 +1,4 @@
-package agh.cs.lab;
+package agh.cs.lab; // przydałby się podział na pakiety
 
 import java.util.Objects;
 
@@ -64,7 +64,7 @@ public class Vector2d {
         int newX = this.x;
         int newY = this.y;
 
-        if (this.x > northEastCorner.x) newX = southWestCorner.x;
+        if (this.x > northEastCorner.x) newX = southWestCorner.x;   // przy założeniu, że nie wychodzimy dalej niż o 1
         if (this.y > northEastCorner.y) newY = southWestCorner.y;
         if (this.x < southWestCorner.x) newX = northEastCorner.x;
         if (this.y < southWestCorner.y) newY = northEastCorner.y;

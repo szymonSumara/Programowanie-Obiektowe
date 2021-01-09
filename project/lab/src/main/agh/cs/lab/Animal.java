@@ -1,11 +1,11 @@
-package agh.cs.lab;
-
+package agh.cs.lab; // przydałby się podział na pakiety
+// json to nie źródło, więc nie powinno go być w src
 
 import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-public class Animal implements IPositionChangeObserver, Comparable {
+public class Animal implements IPositionChangeObserver, Comparable { // Comparable<Animal>
 
     protected Vector2d position;
     protected final EvolutionMap map;
@@ -14,7 +14,7 @@ public class Animal implements IPositionChangeObserver, Comparable {
     private Integer daysOfLive = 1;
     private final AnimalVisualisation animalvisualisation;
 
-    public boolean haveDominantGeneticCode;
+    public boolean haveDominantGeneticCode; // public? + to chyba nie jest zadanie dla zwierzęcia
 
     private final GeneticCode geneticCode;
     public int childrenNum = 0;
@@ -150,7 +150,7 @@ public class Animal implements IPositionChangeObserver, Comparable {
 
     @Override
     public int compareTo(Object o) {
-        return this.energy.compareTo(((Animal) o).energy);
+        return this.energy.compareTo(((Animal) o).energy);  // ClassCastException
     }
 
     public void showAnimalDetail() {

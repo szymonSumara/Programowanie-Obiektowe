@@ -40,7 +40,7 @@ public enum  MapDirection {
     }
 
     public static MapDirection getRandomDirection(){
-        return values()[new Random().nextInt(values().length)];
+        return values()[new Random().nextInt(values().length)]; // nowy obiekt co wywołanie
     }
 
 }

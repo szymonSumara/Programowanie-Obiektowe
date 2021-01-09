@@ -167,13 +167,13 @@ public class SimulationEngine implements IEngine, ActionListener {
             }
     }
 
-    public void multiplicationAnimals() {
+    public void multiplicationAnimals() {   // odwrotnie
         for (int i = 0; i <= this.map.getNorthEastCorner().x; i++)
             for (int j = 0; j <= this.map.getNorthEastCorner().y; j++)
                 if (this.map.getAnimalsAt(new Vector2d(i, j)).size() > 1) {
                     List<Animal> animalsAt = this.map.getAnimalsAt(new Vector2d(i, j));
                     if (animalsAt.get(0).canReproduce() && animalsAt.get(1).canReproduce()) {
-                        Animal newAnimal = animalsAt.get(0).reproduce(animalsAt.get(1));
+                        Animal newAnimal = animalsAt.get(0).reproduce(animalsAt.get(1));    // a co z losowaniem w przypadku remisu?
 
                         this.animals.add(newAnimal);
                         this.statistic.changeObjectState(newAnimal, StatisticEvent.ADD_ELEMENT);

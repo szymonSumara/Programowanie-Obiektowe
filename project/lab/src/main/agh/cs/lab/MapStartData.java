@@ -1,7 +1,7 @@
 package agh.cs.lab;
 
 public class MapStartData {
-    int width;
+    int width;  // każdy może zmodyfikować
     int height;
     int startEnergy;
     int moveEnergy;
