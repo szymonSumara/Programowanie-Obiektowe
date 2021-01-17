@@ -20,8 +20,7 @@ public class SimulationWindow extends JFrame implements ActionListener {
     private final StatisticFileWriter statisticFileWriter;
 
 
-
-    public SimulationWindow(SimulationEngine simulationEngine,MapVisualizer mapVisualisation,PlotRender plotRender,Statistic statistic ){
+    public SimulationWindow(SimulationEngine simulationEngine, MapVisualizer mapVisualisation, PlotRender plotRender, Statistic statistic) {
 
         this.statistic = statistic;
         this.simulationEngine = simulationEngine;
@@ -57,7 +56,7 @@ public class SimulationWindow extends JFrame implements ActionListener {
         this.setJMenuBar(simulationWindowMenuBar);
 
 
-        this.setLayout(new GridLayout(1,2));
+        this.setLayout(new GridLayout(1, 2));
         this.mapVisualisation = mapVisualisation;
         this.add(mapVisualisation);
         this.add(plotRender);
@@ -67,33 +66,33 @@ public class SimulationWindow extends JFrame implements ActionListener {
 
     }
 
-    public void updateContent(){
+    public void updateContent() {
         menuItemDaysCounter.setText(statistic.day.toString());
         mapVisualisation.repaint();
         plotRender.repaint();
     }
 
-    public void stop(){
+    public void stop() {
         mapVisualisation.stop();
     }
 
-    public void run(){
+    public void run() {
         mapVisualisation.run();
     }
 
-    public void actionPerformed(ActionEvent e){
-       switch (e.getActionCommand()){
-           case "stopSimulation":
-               simulationEngine.stop();
-               this.stop();
-               break;
-           case "startSimulation":
-               simulationEngine.run();
-               this.run();
-               break;
-           case "statisticToFile":
-               this.statisticFileWriter.writeStatisticToFile("archiveStats.txt");
-       }
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "stopSimulation":
+                simulationEngine.stop();
+                this.stop();
+                break;
+            case "startSimulation":
+                simulationEngine.run();
+                this.run();
+                break;
+            case "statisticToFile":
+                this.statisticFileWriter.writeStatisticToFile("archiveStats.txt");
+        }
 
     }
 
