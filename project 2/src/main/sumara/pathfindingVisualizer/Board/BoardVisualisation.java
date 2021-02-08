@@ -1,6 +1,6 @@
 package sumara.pathfindingVisualizer.Board;
 
-import sumara.pathfindingVisualizer.Visualization.ApplicationInterface;
+import sumara.pathfindingVisualizer.UserInterface.ApplicationInterface;
 
 import javax.swing.*;
 import javax.swing.border.Border;

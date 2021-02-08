@@ -28,7 +28,7 @@ public class BoardField {
     }
 
     public void placeWall() {
-        if (this.boardFieldContest == BoardFieldContest.FREENODE) {
+        if (this.boardFieldContest != BoardFieldContest.STARTNODE && this.boardFieldContest != BoardFieldContest.ENDNODE) {
             this.boardFieldContest = BoardFieldContest.WALLNODE;
             this.notifyBoard();
 

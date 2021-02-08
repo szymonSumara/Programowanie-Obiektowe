@@ -10,34 +10,39 @@ import java.awt.event.ActionListener;
 
 
 public class AlgorithmVisualizer implements ActionListener {
-    private BoardField actualFieldInPathConstructing = null;
+    private BoardField actualFieldInPathConstructing;
     private final Board board;
-    private final Application relatedApplication;
-    private Timer timer;
+    private final Timer timer;
 
 
-    AlgorithmVisualizer(Application relatedApplication , Board board){
+    AlgorithmVisualizer(Application relatedApplication, Board board) {
         this.board = board;
         this.actualFieldInPathConstructing = board.getEndNode();
-        this.relatedApplication = relatedApplication;
-        this.timer = new Timer(this.relatedApplication.getDelay(),this);
+
+        this.timer = new Timer(relatedApplication.getDelay(), this);
     }
 
-    public void run(){
+    public void run() {
         this.timer.start();
     }
 
     public void actionPerformed(ActionEvent e) {
-
-        if(actualFieldInPathConstructing == board.getStartNode())
+        if (actualFieldInPathConstructing == board.getStartNode())
             this.timer.stop();
         else
-            constructPathStep();
-
+            this.constructPathStep();
     }
 
-    public void constructPathStep(){
-        actualFieldInPathConstructing.setAsOnPath();
-        actualFieldInPathConstructing = actualFieldInPathConstructing.getParent();
+    public void constructPathStep() {
+        this.actualFieldInPathConstructing.setAsOnPath();
+        this.actualFieldInPathConstructing = this.actualFieldInPathConstructing.getParent();
+    }
+
+    public boolean isRunning() {
+        return this.timer.isRunning();
+    }
+
+    public void clearData() {
+        this.actualFieldInPathConstructing = this.board.getEndNode();
     }
 }

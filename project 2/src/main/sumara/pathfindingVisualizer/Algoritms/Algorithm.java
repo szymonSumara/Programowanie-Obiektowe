@@ -9,55 +9,69 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
 
-public abstract class algorithm  implements IPathFindingAlgorithm, ActionListener {
+public abstract class Algorithm implements IPathFindingAlgorithm, ActionListener {
 
     public final Board board;
-    public Collection<BoardField> collection;
+    protected Collection<BoardField> collection;
     private final Timer timer;
     private boolean wasStarted = false;
-    public BoardField lastField = null;
+    protected BoardField lastField = null;
     private final Application application;
+    private final AlgorithmVisualizer algorithmVisualizer;
 
-    public algorithm(Board board,Application application){
+    public Algorithm(Board board, Application application) {
         this.board = board;
         this.application = application;
-        this.timer = new Timer( this.application.delay,this);
+        this.timer = new Timer(this.application.getDelay(), this);
+        this.algorithmVisualizer = new AlgorithmVisualizer(application, board);
     }
 
-    public void run() throws InterruptedException {
+    public void run() {
+
+        if (wasStarted && !board.getEndNode().canBeVisit())
+            this.clearAlgorithmData();
+
         if (!wasStarted) {
             wasStarted = true;
             collection.add(board.getStartNode());
         }
+
         timer.start();
     }
 
-    public void step(){
-        this.timer.setDelay(this.application.delay);
+    protected void step() {
+        this.timer.setDelay(this.application.getDelay());
     }
 
-    public void clearAlgorithmData(){
+    public void clearAlgorithmData() {
         this.lastField = null;
         this.wasStarted = false;
         this.collection.clear();
+        this.board.clear();
+        this.algorithmVisualizer.clearData();
     }
 
-    public void stop(){
+    public void stop() {
         timer.stop();
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(this.board.getEndNode().isVisited()){
-            if(lastField != null )
+        if (this.board.getEndNode().isVisited()) {
+
+            if (lastField != null)
                 lastField.setAsVisited();
+
             this.timer.stop();
-            AlgorithmVisualizer algorithmVisualizer = new AlgorithmVisualizer(application,board);
             algorithmVisualizer.run();
-        }
-        else if(collection.isEmpty())
+        } else if (collection.isEmpty())
             timer.stop();
         else
             this.step();
+    }
+
+
+    public boolean isRunning() {
+        return this.timer.isRunning() || this.algorithmVisualizer.isRunning();
     }
 
 }

@@ -1,4 +1,4 @@
-package sumara.pathfindingVisualizer.Visualization;
+package sumara.pathfindingVisualizer.UserInterface;
 
 import javax.swing.*;
 import java.awt.*;

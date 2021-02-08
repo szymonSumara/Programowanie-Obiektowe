@@ -59,8 +59,8 @@ public class Vector2d {
         return new Vector2d(-1 * this.x, -1 * this.y);
     }
 
-      public double distance( Vector2d other) {
-          return Math.pow((this.x - other.x), 2) + Math.pow((this.y - other.y), 2);
-      }
+    public double distance(Vector2d other) {
+        return Math.pow((this.x - other.x), 2) + Math.pow((this.y - other.y), 2);
+    }
 
 }
