@@ -1,11 +1,12 @@
 package sumara.pathfindingVisualizer.World;
 
+import sumara.pathfindingVisualizer.Aplication.Application;
+
 public class World {
 
     public static void main(String[] args) {
 
-        System.out.println("Hello World");
-
+        Application application = new Application();
     }
 
 }
