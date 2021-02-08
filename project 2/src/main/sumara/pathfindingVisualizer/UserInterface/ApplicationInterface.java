@@ -48,26 +48,27 @@ public class ApplicationInterface  extends JFrame implements ActionListener{
         addElement.add(new MenuItem("end node","addEndNode",this));
         addElement.add(new MenuItem("wall node","addWallNode",this));
 
-        JMenu boardMenu = new JMenu("Others");
-        boardMenu.add(new MenuItem("clear","clear",this));
-        boardMenu.add(new MenuItem("add random walls","addRandomWalls",this));
-        boardMenu.add(new MenuItem("clear walls","clearWalls",this));
-        boardMenu.add(new MenuItem("settings","showSettings" , this));
+        JMenu otherMenu = new JMenu("Others");
+        otherMenu.add(new MenuItem("clear","clear",this));
+        otherMenu.add(new MenuItem("add random walls","addRandomWalls",this));
+        otherMenu.add(new MenuItem("clear walls","clearWalls",this));
+        otherMenu.addSeparator();
+        otherMenu.add(new MenuItem("settings","showSettings" , this));
 
-        JMenu actionMenu = new JMenu("action");
+        JMenu actionMenu = new JMenu("Action");
         actionMenu.add(new MenuItem("start","start",this));
         actionMenu.add(new MenuItem("stop","stop",this));
 
-        menuBar.add(actionMenu);
+
         menuBar.add(addElement);
         menuBar.add(algorithmChose);
-        menuBar.add(boardMenu);
-
+        menuBar.add(otherMenu);
+        menuBar.add(actionMenu);
 
         this.setJMenuBar(menuBar);
         this.boardLegend = new BoardLegend();
 
-        getContentPane().add(application.board.getVisualisation());
+        getContentPane().add(boardVisualisation);
         getContentPane().add(this.boardLegend);
 
         this.setLayout(new FlowLayout());
@@ -112,44 +113,51 @@ public class ApplicationInterface  extends JFrame implements ActionListener{
             case "addStartNode":
                 this.elementToInsert = BoardFieldContest.STARTNODE;
                 break;
+
             case "addEndNode":
                 this.elementToInsert = BoardFieldContest.ENDNODE;
                 break;
+
             case "addWallNode":
                 this.elementToInsert = BoardFieldContest.WALLNODE;
                 break;
+
             case "clearWalls":
                 this.relatedApplication.clearWalls();
                 break;
+
             case "clear":
                 this.relatedApplication.clear();
                 break;
+
             case "start":
-                try {
-                    this.relatedApplication.runAlgorithm();
-                } catch (InterruptedException interruptedException) {
-                    interruptedException.printStackTrace();
-                }
+                this.relatedApplication.runAlgorithm();
                 break;
 
             case "stop":
                 this.relatedApplication.stopPathFindingAlgorithm();
                 break;
+
             case "algorithmBFS":
                 this.relatedApplication.selectAlgorithm("algorithmBFS");
                 break;
+
             case "algorithmDFS":
                 this.relatedApplication.selectAlgorithm("algorithmDFS");
                 break;
+
             case "algorithmGreedy":
                 this.relatedApplication.selectAlgorithm("algorithmGreedy");
                 break;
+
             case "addRandomWalls":
                 this.relatedApplication.generateRandomWalls();
                 break;
+
             case "showSettings":
                 this.settingsWindow.setVisible(true);
                 break;
+
             case "applyButton":
                 this.readInsertedSettings();
                 this.settingsWindow.setVisible(false);
